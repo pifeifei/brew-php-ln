@@ -3,7 +3,6 @@
 # Email: pifeifei1989@qq.com
 # weibo: @kis龍
 
-# brew_prefix=$(brew --prefix | sed 's#/#\\\/#g')
 brew_prefix=$(brew --prefix)
 
 brew_array=("5.6" "7.0" "7.1" "7.2" "7.3" "7.4" "8.0" "8.1")
@@ -18,7 +17,7 @@ if [[ -z "$1" ]]; then
     echo "usage: brew-php-ln version [-m]"
     echo
     echo "    version    one of:" ${brew_array[@]}
-    echo "    -m|major   major version php8, or php81"
+    echo "    -m|major   major version, sample php8 or php81"
     echo
     exit
 fi
@@ -88,5 +87,5 @@ EOF
 
     echo "All done!"
 else
-    echo "Unknown version of PHP. PHP Switcher can only handle arguments of:" ${brew_array[@]}
+    echo "Unknown version of PHP. PHP Link can only handle arguments of:" ${brew_array[@]}
 fi
