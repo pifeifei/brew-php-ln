@@ -62,6 +62,11 @@ if [[ " ${php_array[*]} " == *"$php_version"* ]]; then
         echo "ln to $php_version"
         echo "ln your shell"
 
+        ln -sf "$php_opt_path$php_version/bin/pear" "$brew_prefix/bin/pear${ln_version}"
+        ln -sf "$php_opt_path$php_version/bin/peardev" "$brew_prefix/bin/peardev${ln_version}"
+        ln -sf "$php_opt_path$php_version/bin/pecl" "$brew_prefix/bin/pecl${ln_version}"
+        ln -sf "$php_opt_path$php_version/bin/phar" "$brew_prefix/bin/phar${ln_version}"
+
         ln -sf "$php_opt_path$php_version/bin/php" "$brew_prefix/bin/php${ln_version}"
         ln -sf "$php_opt_path$php_version/bin/php-cgi" "$brew_prefix/bin/php-cgi${ln_version}"
         ln -sf "$php_opt_path$php_version/bin/php-config" "$brew_prefix/bin/php-config${ln_version}"
