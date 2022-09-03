@@ -33,6 +33,8 @@ jobs:
           brew --version
           brew tap shivammathur/php
           brew install shivammathur/php/php@${{ matrix.php-version }}
+          brew install brew-php-switcher
+          brew-php-switcher ${{ matrix.php-version }} -s
           ./phpln.sh ${{ matrix.php-version }}
           v1=$(php -v | grep -e '^PHP' | cut -d' ' -f2)
           phpln="php"$(php -v | grep -e '^PHP' | cut -d' ' -f2 | cut -d. -f1,2 | sed 's#\.##g')
