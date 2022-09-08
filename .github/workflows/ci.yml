@@ -25,11 +25,10 @@ jobs:
 
     steps:
       - name: "Checkout code"
-        uses: actions/checkout@v2.3.3
+        uses: actions/checkout@v2
 
       - run: |
           set -xe
-
           brew --version
           brew tap shivammathur/php
           brew install shivammathur/php/php@${{ matrix.php-version }}

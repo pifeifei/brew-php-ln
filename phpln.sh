@@ -74,7 +74,8 @@ if [[ " ${php_array[*]} " == *"$php_version"* ]]; then
         # composer
         cat <<EOF >"$brew_prefix/bin/composer${ln_version}"
 #!/bin/bash
-$brew_prefix/bin/php${ln_version} $php_opt_path/composer/bin/composer \$*
+PATH=$php_opt_path$php_version/bin:\$PATH
+/opt/homebrew/opt/composer/bin/composer \$*
 EOF
         chmod +x "$brew_prefix/bin/composer${ln_version}"
 
