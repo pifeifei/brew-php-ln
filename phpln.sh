@@ -11,13 +11,15 @@ php_installed_array=()
 php_opt_path="$brew_prefix/opt/"
 php_version="php@$1"
 php_major=0
+php_default=0
 
 # Has the user submitted a version required
 if [[ -z "$1" ]]; then
     echo "usage: brew-php-ln version [-m]"
     echo
     echo "    version    one of:" ${brew_array[@]}
-    echo "    -m|major   major version, sample php8 or php81"
+    echo "    -m|--major   major version, sample php8 or php81"
+    echo "    -d|--default   default version"
     echo
     exit
 fi
@@ -27,9 +29,15 @@ while [[ $# -gt 0 ]]; do
     key="$1"
     case "$key" in
     # This is a flag type option. Will catch either -s or --skip
-    -m | -major)
+    -m | --major)
         if [[ "${1#*=}" == "-m" ]]; then
             php_major=1
+        fi
+        ;;
+
+    -d | --default)
+        if [[ "${1#*=}" == "-d" ]]; then
+            php_default=1
         fi
         ;;
 
@@ -48,7 +56,14 @@ for i in ${php_array[*]}; do
     fi
 done
 
-if [[ 1 == $php_major ]]; then
+if [[ 1 == $php_default ]]; then
+    for i in ${php_installed_array[@]}; do
+        brew unlink $i
+        break
+    done
+    brew link --force "$php_version"
+    exit
+elif [[ 1 == $php_major ]]; then
     ln_version=${php_version:4:1}
 else
     ln_version="${php_version:4:1}${php_version:6:1}"
