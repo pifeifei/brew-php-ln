@@ -30,6 +30,10 @@ composer80 -V
 brew-php-ln 8.0 -m # php8 及其相关
 php8 -v
 composer8 -V
+
+# 非 brew 安装使用这个命令
+./phpln.sh 8.1 -m
+php8 -v
 ```
 
 PS: 小版本升级不用重新创建软连接。
